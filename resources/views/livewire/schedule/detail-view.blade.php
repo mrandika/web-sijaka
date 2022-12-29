@@ -2,6 +2,10 @@
 {{ $schedule->train->name }}
 @endsection
 
+@section('schedule_active')
+    active
+@endsection
+
 @extends('layouts.navigation.sijaka-navigation')
 
 <div class="main-content">

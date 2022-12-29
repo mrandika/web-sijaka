@@ -43,6 +43,10 @@
                             <th scope="row">Jumlah Kedatangan</th>
                             <td>{{ $station->arrive_schedule->count() }} kereta akan datang</td>
                         </tr>
+                        <tr>
+                            <th scope="row">Dashboard Jadwal</th>
+                            <td><a href="{{ route('station.schedule', $station->id) }}" class="btn btn-dark">Halaman Jadwal</a></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -55,7 +59,7 @@
                     <h4>Data Pemberangkatan</h4>
                 </div>
                 <div class="card-body">
-                    @forelse($station->depart_schedule as $schedule)
+                    @forelse($station->depart_schedule->sortByDesc('created_at') as $schedule)
                         <livewire:component.train-schedule-card :schedule="$schedule" :key="'schedule-'.$schedule->id">
                     @empty
                         <div class="empty-state" data-height="400" style="height: 400px;">
@@ -75,7 +79,7 @@
                     <h4>Data Kedatangan</h4>
                 </div>
                 <div class="card-body">
-                    @forelse($station->arrive_schedule as $schedule)
+                    @forelse($station->arrive_schedule->sortByDesc('created_at') as $schedule)
                         <livewire:component.train-schedule-card :schedule="$schedule" :key="'schedule-'.$schedule->id">
                     @empty
                         <div class="empty-state" data-height="400" style="height: 400px;">
